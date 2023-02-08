@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         int numberToGuess = new Random().nextInt(RANDOM_BORDER);
         Scanner scanner = new Scanner(System.in);
-        
+
         guessNumberGame(numberToGuess, scanner);
     }
 
@@ -29,7 +29,7 @@ public class Main {
                 logger.log(Level.INFO, "You guessed it!");
                 break;
             } else if (numberToGuess > numberFromConsole) {
-                logger.log(Level.FINER, "Your number is LOWER than the one you are trying to guess");
+                logger.log(Level.INFO, "Your number is LOWER than the one you are trying to guess");
             } else {
                 logger.log(Level.INFO, "Your number is GREATER than the one you are trying to guess");
             }
