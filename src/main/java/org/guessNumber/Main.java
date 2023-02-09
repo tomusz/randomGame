@@ -1,5 +1,7 @@
 package org.guessNumber;
 
+import org.guessNumber.constants.Constants;
+
 import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -22,23 +24,29 @@ public class Main {
         int attemptsCounter = MAXIMUM_GUESS_AMOUNT;
 
         while (attemptsCounter > 0) {
-            logger.log(Level.INFO, "Please provide number in range 0 to 99");
-            int numberFromConsole = scanner.nextInt();
+            logger.log(Level.INFO, Constants.PLEASE_PROVIDE_NUMBER_MSG);
+            try {
+                int numberFromConsole = scanner.nextInt();
 
-            if (numberToGuess == numberFromConsole) {
-                logger.log(Level.INFO, "You guessed it!");
+                if (numberToGuess == numberFromConsole) {
+                    logger.log(Level.INFO, Constants.CORRECT_ANSWER_MSG);
+                    break;
+                } else if (numberToGuess > numberFromConsole) {
+                    logger.log(Level.INFO, Constants.LOWER_ANSWER_MSG);
+                } else {
+                    logger.log(Level.INFO, Constants.GRATER_ANSWER_MSG);
+                }
+                attemptsCounter--;
+                if (attemptsCounter != 0) {
+                    logger.log(Level.INFO, String.format(Constants.PLEASE_TRY_AGAIN_MSG, attemptsCounter));
+                } else {
+                    logger.log(Level.INFO, String.format(Constants.GAME_LOST_WITH_ANSWER, numberToGuess));
+                }
+            } catch (RuntimeException ex) {
+                logger.log(Level.SEVERE,Constants.PROVIDED_IS_NOT_A_NUMBER_MSG);
                 break;
-            } else if (numberToGuess > numberFromConsole) {
-                logger.log(Level.INFO, "Your number is LOWER than the one you are trying to guess");
-            } else {
-                logger.log(Level.INFO, "Your number is GREATER than the one you are trying to guess");
             }
-            attemptsCounter--;
-            if (attemptsCounter != 0) {
-                logger.log(Level.INFO, String.format("Please try again %s attempts are left", attemptsCounter));
-            } else {
-                logger.log(Level.INFO, String.format("Sorry you didn't guess the number, the answer was: %s", numberToGuess));
-            }
+
         }
     }
 }
