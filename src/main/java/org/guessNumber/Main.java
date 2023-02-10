@@ -1,6 +1,8 @@
 package org.guessNumber;
 
 import org.guessNumber.constants.Constants;
+import org.guessNumber.helper.LoggerBuilder;
+import org.guessNumber.helper.LoggerDirector;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -9,13 +11,17 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    private static final Logger logger = Logger.getLogger(Main.class.getName());
+//    private static final Logger logger = Logger.getLogger(Main.class.getName());
+    static LoggerBuilder logBuilder = new LoggerBuilder();
+    static LoggerDirector loggerDirector = new LoggerDirector(logBuilder);
+    private static Logger logger = loggerDirector.getLogger();
     private static final int RANDOM_BORDER = 100;
     private static final int MAXIMUM_GUESS_AMOUNT = 5;
 
     public static void main(String[] args) {
         int numberToGuess = new Random().nextInt(RANDOM_BORDER);
         Scanner scanner = new Scanner(System.in);
+        loggerDirector.createFileLoggerAndCommandLogger();
 
         guessNumberGame(numberToGuess, scanner);
     }

@@ -4,7 +4,6 @@ public class Constants {
     public static final int NUMBER_TO_GUESS = 13;
     public static final int LOWER_NUMBER_THAN_NUMBER_TO_GUESS = 11;
     public static final int GREATER_NUMBER_THAN_NUMBER_TO_GUESS = 14;
-    public static final String NOT_A_INT = "!@#@%^@^";
     public static final String CORRECT_ANSWER_MSG = "You guessed it!";
     public static final String LOWER_ANSWER_MSG = "Your number is LOWER than the one you are trying to guess";
     public static final String GRATER_ANSWER_MSG = "Your number is GREATER than the one you are trying to guess";
